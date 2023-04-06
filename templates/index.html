@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Present Register</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+	<div class="container">
+		<h1>Present Register</h1>
+		<form action="/submit" method="POST">
+			<div class="form-group">
+				<label for="id">Student ID:</label>
+				<input type="text" name="id" id="id">
+			</div>
+			<div class="form-group">
+				<label for="name">Student Name:</label>
+				<input type="text" name="name" id="name">
+			</div>
+
+			<input type="submit" value="Submit" class="btn">
+		</form>
+		<br>
+		<div class="export">
+			<a href="/export"><button class="btn btn-secondary">Export to CSV</button></a>
+		</div>
+		<br><br>
+		<h3>Present List:</h3>
+		<table>
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for student in students %}
+				<tr>
+					<td>{{ student[0] }}</td>
+					<td>{{ student[1] }}</td>
+					<td>{{ student[2] }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
